@@ -6,41 +6,41 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-import * as React from 'react';
+import React, { useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styles/styled-components';
 import { Switch, Route } from 'react-router-dom';
+import PrivateRoute from './privateRoute';
 
 import HomePage from 'containers/HomePage/Loadable';
-import FeaturePage from 'containers/FeaturePage/Loadable';
+import LoginPage from 'containers/LoginPage/Loadable';
+import SignUpPage from 'containers/SignUpPage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
-import Header from 'components/Header';
 import Footer from 'components/Footer';
 
 import GlobalStyle from '../../global-styles';
 
 const AppWrapper = styled.div`
-  max-width: calc(768px + 16px * 2);
-  margin: 0 auto;
+  max-width: 100%;
   display: flex;
   min-height: 100%;
-  padding: 0 16px;
   flex-direction: column;
 `;
 
 export default function App() {
+
   return (
     <AppWrapper>
       <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
+        titleTemplate="%s - Kooee"
+        defaultTitle="Kooee Platform"
       >
-        <meta name="description" content="A React.js Boilerplate application" />
+        <meta name="description" content="Customer Videos for Brands" />
       </Helmet>
-      <Header />
       <Switch>
-        <Route exact path="/" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
+        <Route exact path="/signin" component={LoginPage} />
+        <Route exact path="/signup" component={SignUpPage} />
+        <PrivateRoute path="/" component={HomePage} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />

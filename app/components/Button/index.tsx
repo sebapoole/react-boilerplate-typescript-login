@@ -1,15 +1,13 @@
+
 /**
- *
- * Button.js
- *
- * A common button, if you pass it a prop "route" it'll render a link to a react-router route
- * otherwise it'll render a link with an onclick
+ * Button (Component)
  */
 
 import React, { Children, ReactNode } from 'react';
+import PropTypes from 'prop-types';
 
-import A from './A';
-import StyledButton from './StyledButton';
+import { StyledASolid, StyledAOutline } from './A';
+import { ButtonSolid, ButtonOutline } from './StyledButton';
 import Wrapper from './Wrapper';
 
 export interface Props {
@@ -17,25 +15,76 @@ export interface Props {
   href?: string;
   onClick?(): void;
   children?: ReactNode;
+  color?: string;
+  fill?: string;
+  margin?: string;
+  round?: string;
+  size?: string;
+  outline?: boolean;
+  submit?: boolean;
 }
-function Button(props: Props) {
-  // Render an anchor tag
-  let button = (
-    <A href={props.href} onClick={props.onClick}>
-      {Children.toArray(props.children)}
-    </A>
-  );
 
-  // If the Button has a handleRoute prop, we want to render a button
-  if (props.handleRoute) {
+
+function Button(props: Props) {
+  let button;
+
+  // Render an anchor tag
+  if (props.outline) {
+    props.href = props.href;
+    props.onClick = props.onClick;
+
     button = (
-      <StyledButton onClick={props.handleRoute}>
+      <StyledAOutline {...props}>
         {Children.toArray(props.children)}
-      </StyledButton>
+      </StyledAOutline>
+    );
+  } else {
+    button = (
+      <StyledASolid {...props}>
+        {Children.toArray(props.children)}
+      </StyledASolid>
     );
   }
 
-  return <Wrapper>{button}</Wrapper>;
+  // If the Button has a handleRoute prop, we want to render a button
+  if (props.handleRoute) {
+    if (props.outline) {
+      button = (
+        <ButtonOutline {...props}>
+          {Children.toArray(props.children)}
+        </ButtonOutline>
+      );
+    } else {
+      button = (
+        <ButtonSolid {...props}>
+          {Children.toArray(props.children)}
+        </ButtonSolid>
+      );
+    }
+  }
+
+  // If the Button has a submit prop, we want to render a input
+  if (props.submit) {
+    if (props.outline) {
+      button = (
+        <ButtonOutline type="submit" {...props}>
+          {Children.toArray(props.children)}
+        </ButtonOutline>
+      );
+    } else {
+      button = (
+        <ButtonSolid type="submit" {...props}>
+          {Children.toArray(props.children)}
+        </ButtonSolid>
+      );
+    }
+  }
+
+  return (
+    <Wrapper size={props.size} margin={props.margin} fill={props.fill}>
+      {button}
+    </Wrapper>
+  );
 }
 
 export default Button;

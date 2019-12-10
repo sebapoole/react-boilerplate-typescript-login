@@ -29,6 +29,20 @@ const makeSelectRepos = () =>
 const makeSelectLocation = () =>
   createSelector(selectRoute, routeState => routeState.location);
 
+const makeSelectErrorMessage = () =>
+  createSelector(selectGlobal, globalState => globalState.errorMessage);
+
+const makeSelectCurrentlySending = () =>
+  createSelector(selectGlobal, globalState => globalState.currentlySending);
+
+const makeSelectAuth = () =>
+  createSelector(selectGlobal, globalState => globalState.loggedIn);
+
+const makeSelectFormState = () =>
+  createSelector(selectGlobal, globalState => {
+    return globalState.formState;
+  });
+
 export {
   selectGlobal,
   makeSelectCurrentUser,
@@ -36,4 +50,8 @@ export {
   makeSelectError,
   makeSelectRepos,
   makeSelectLocation,
+  makeSelectErrorMessage,
+  makeSelectFormState,
+  makeSelectAuth,
+  makeSelectCurrentlySending,
 };

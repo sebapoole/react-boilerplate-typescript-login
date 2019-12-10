@@ -2,6 +2,7 @@ import appReducer from '../reducer';
 import { loadRepos, reposLoaded, repoLoadingError } from '../actions';
 import { ContainerState } from '../types';
 import { Repo } from '../../RepoListItem/types';
+import auth from '../../../utils/auth';
 
 describe('appReducer', () => {
   let state: ContainerState;
@@ -13,6 +14,13 @@ describe('appReducer', () => {
       userData: {
         repos: [],
       },
+      formState: {
+        username: '',
+        password: '',
+      },
+      currentlySending: false,
+      loggedIn: auth.loggedIn(),
+      errorMessage: '',
     };
   });
 

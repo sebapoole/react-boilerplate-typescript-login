@@ -10,10 +10,19 @@ interface AppState {
   readonly error?: object | boolean;
   readonly currentUser: string;
   readonly userData: UserData;
+  formState: FormState;
+  currentlySending: boolean;
+  loggedIn: boolean;
+  errorMessage: string;
 }
 
 interface UserData {
   readonly repos?: Repo[];
+}
+
+interface FormState {
+  username?: string;
+  password?: string;
 }
 
 
@@ -27,4 +36,4 @@ type RootState = ApplicationRootState;
 type ContainerState = AppState;
 type ContainerActions = AppActions;
 
-export { RootState, ContainerState, ContainerActions, UserData };
+export { RootState, ContainerState, ContainerActions, UserData, FormState };

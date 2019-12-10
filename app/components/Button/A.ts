@@ -1,9 +1,27 @@
-import styled from 'styles/styled-components';
+/**
+ * StyledA / StyledA (Styled Component)
+ */
 
-import buttonStyles from './buttonStyles';
+import styled from 'styled-components';
+import * as style from 'components/Variables';
+import * as base from './buttonStyles';
 
-const A = styled.a`
-  ${buttonStyles};
+export const StyledASolid = styled.a`
+  ${base.Button};
+  ${(props) => props.size && base[props.size]};
 `;
 
-export default A;
+export const StyledAOutline = styled(StyledASolid)`
+  background-color: transparent;
+  border: border: ${(props) => props.color ? `2px solid ${style.color[props.color].default}`
+      : `2px solid ${style.color.gray.default}`};
+  color: ${(props) => props.color ? style.color[props.color].default : style.color.gray.default};
+  &:hover {
+    background-color: transparent;
+    border: border: ${(props) => props.color ? `2px solid ${style.color[props.color].hover}`
+        : `2px solid ${style.color.gray.hover}`};
+    color: ${(props) => props.color ? style.color[props.color].hover : style.color.gray.hover};
+  }
+`;
+
+export default StyledAOutline;

@@ -11,6 +11,13 @@ enum ActionTypes {
   LOAD_REPOS = 'boilerplate/App/LOAD_REPOS',
   LOAD_REPOS_SUCCESS = 'boilerplate/App/LOAD_REPOS_SUCCESS',
   LOAD_REPOS_ERROR = 'boilerplate/App/LOAD_REPOS_ERROR',
+  SENDING_REQUEST = 'boilerplate/App/SENDING_REQUEST',
+  LOGIN = 'boilerplate/App/LOGIN',
+  SIGNUP = 'boilerplate/App/SIGNUP',
+  SET_AUTH = 'boilerplate/App/SET_AUTH',
+  SET_ERROR_MESSAGE = 'boilerplate/App/SET_ERROR_MESSAGE',
+  LOGOUT = 'boilerplate/App/LOGOUT',
+  CHANGE_FORM = 'boilerplate/App/CHANGE_FORM',
 }
 
 export default ActionTypes;
